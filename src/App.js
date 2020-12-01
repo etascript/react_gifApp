@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { AddCategory } from './components/AddCategory';
+import { GifGrid } from './components/GifGrid'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// agregar nueva categoría
+
+const App = () => {
+    let [categories, setCategories] = useState(['One punch']);
+    // const handleAdd = () => {
+    //     setCategories(cats => [...cats, 'Haikyuu!!']);
+    // }
+
+
+    return (
+        <div className="container">
+            <AddCategory setCategories={setCategories} />
+            <hr></hr>
+
+
+            <ol>
+                {
+                    categories.map(category =>
+                        (<GifGrid
+                                key={category} 
+                                category={category}
+                            />)
+                    )
+                }
+            </ol>
+        </div>
+    );
 }
 
 export default App;
